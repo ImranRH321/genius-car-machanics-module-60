@@ -15,8 +15,15 @@
 12. useState - doita jinis dibe. 1 ak current state , 2. update State.
 13. data jehoto load korba extranul hok ba public hok useEffect hook diye. react olara banai dice.
 14.useEffect 2 ta perameta ney. 1 ak calback function, 2. dependenci[] atar mane akbar call kora hobe. jodi kono kico change , ba common kore img chagne kore mot kota joto bar change hobe depandenci toto bar call hobe. jodi kono dependenci dei.
-15.   
- 
+15. services take data load kore map ar bitor service ar bitor pataci. name, img, descrepition, price dekaice.
+16. agulo ke 3 ta cart item kore dekano
+17.responsive media query.1 column max-width:576px , and minimum-width:577px; 2column
+18.(min-width: 577px) and (max-width: 992px) . code.....
+
+
+
+
+
 // ei 3 line work now
     useEffect( () => {
         fetch('services.json')
@@ -24,6 +31,5 @@
         .then(data => setServices(data))
     }, [])
 //
-
 
 */
