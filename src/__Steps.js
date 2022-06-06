@@ -21,7 +21,7 @@
 18.(min-width: 577px) and (max-width: 992px) . code.....
 19. programing hero gitup take images gula nite hobe.
 20. hoem ar bitor Experts, expert, doi ta componet hobe. experts data gula load hobe.
-
+21.rem = Font size of the root element.
 
 
 
