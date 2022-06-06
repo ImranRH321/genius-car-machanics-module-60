@@ -19,6 +19,8 @@
 16. agulo ke 3 ta cart item kore dekano
 17.responsive media query.1 column max-width:576px , and minimum-width:577px; 2column
 18.(min-width: 577px) and (max-width: 992px) . code.....
+19. programing hero gitup take images gula nite hobe.
+20. hoem ar bitor Experts, expert, doi ta componet hobe. experts data gula load hobe.
 
 
 
