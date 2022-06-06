@@ -17,7 +17,13 @@
 14.useEffect 2 ta perameta ney. 1 ak calback function, 2. dependenci[] atar mane akbar call kora hobe. jodi kono kico change , ba common kore img chagne kore mot kota joto bar change hobe depandenci toto bar call hobe. jodi kono dependenci dei.
 15.   
  
-
+// ei 3 line work now
+    useEffect( () => {
+        fetch('services.json')
+        .then(res => res.json())
+        .then(data => setServices(data))
+    }, [])
+//
 
 
 */

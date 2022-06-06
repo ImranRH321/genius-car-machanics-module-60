@@ -1,17 +1,23 @@
-import React from 'react';
-import reqair1 from '../../../images/repair-1.jpg'
-
-const  services = [
-    {id:1, name:'oli change', price:100, describe: '', img: reqair1}
-]
+import { useState, useEffect } from "react";
+import Service from "../Service/Service";
 
 const Services = () => {
-    
-    return (
-        <div>
-            <h2>Services page </h2>
-        </div>
-    );
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    fetch("services.json")
+      .then(res => res.json())
+      .then(data => setServices(data));
+  }, []);
+
+  return (
+    <div>
+      <h2>Services: {services.length}</h2>
+      {services.map(service => (
+        <Service service={service} key={service.id}></Service>
+      ))}
+    </div>
+  );
 };
 
 export default Services;
