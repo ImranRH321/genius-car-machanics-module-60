@@ -30,6 +30,17 @@
  1.onChange
  2.onBlur
  3.useRef
+ 4.even.target.name.value;
 */
 
+/* 
+Enverment variable :
+control + shift = upArrow = dile multiline curse select hoge.
+tarpor jodi N cap dei taile curser sobar laste jabe .
+tarpor jodi home dei taile sobar age chole asbe.
+tarpor control + rightArrow =  dile word ar laste jabe.
+firebse.....
+jodi shift chap diye N chap dei taile sobgula select hoibo.
 
+
+*/
