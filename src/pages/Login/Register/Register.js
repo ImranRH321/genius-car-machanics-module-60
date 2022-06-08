@@ -9,14 +9,19 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-
   const navigate = useNavigate();
+
+  let errorElement;
+  if (error) {
+    errorElement = <p className="text-danger">Error: {error?.message}</p>;
+  }
 
   const handleNavigateLogin = () => {
     navigate("/login");
   };
+
   if (user) {
-    navigate('/')
+    navigate("/");
   }
   const handleRegister = event => {
     event.preventDefault();
@@ -45,18 +50,22 @@ const Register = () => {
           id=""
           placeholder="Your password"
         />
-        <Button variant="primary" type="submit">
+        <input type="checkbox" name="trams" id="trams"></input>
+        <label className='ps-2'>Accepts Genius car Trams and condition </label>
+        <Button variant="primary d-block w-50 mx-auto mb-2" type="submit">
           Register
         </Button>
       </form>
+      {errorElement}
+
       <p>
         All Ready have account ?
         <Link
           to="/login"
-          className="text-danger pe-auto text-decoration-none"
+          className="text-primary pe-auto text-decoration-none"
           onClick={handleNavigateLogin}
         >
-         Please Login
+          Please Login
         </Link>
       </p>
       <SocialLogin></SocialLogin>
