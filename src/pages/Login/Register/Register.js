@@ -1,21 +1,29 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
 import "./Register.css";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Register = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const navigate = useNavigate();
 
-  const hanldeLoginNavigate = () => {
+  const handleNavigateLogin = () => {
     navigate("/login");
   };
-
+  if (user) {
+    navigate('/')
+  }
   const handleRegister = event => {
-    event.preventDefault()
+    event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(name, email, password);
+    // console.log(name, email, password);
+    createUserWithEmailAndPassword(email, password);
   };
 
   return (
@@ -45,7 +53,7 @@ const Register = () => {
         <Link
           to="/login"
           className="text-danger pe-auto text-decoration-none"
-          onClick={hanldeLoginNavigate}
+          onClick={handleNavigateLogin}
         >
           Login
         </Link>
