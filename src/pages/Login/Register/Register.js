@@ -56,7 +56,7 @@ const Register = () => {
           className="text-danger pe-auto text-decoration-none"
           onClick={handleNavigateLogin}
         >
-          Login
+         Please Login
         </Link>
       </p>
       <SocialLogin></SocialLogin>

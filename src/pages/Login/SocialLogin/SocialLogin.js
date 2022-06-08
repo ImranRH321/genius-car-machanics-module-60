@@ -2,26 +2,31 @@ import React from "react";
 import google from "../../../images/social/google.png";
 import facebook from "../../../images/social/facebook.png";
 import githup from "../../../images/social/githup.png";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+
   const navigate = useNavigate();
 
-  if (user) {
-    console.log(user);
-    navigate("/");
-  }
-
-  let setErrror;
-  if (error) {
-    setErrror = (
+  let errorElement;
+  if (error || error1) {
+    errorElement = (
       <div>
-        <p>Error: {error.message}</p>
+        <p>Error: {error?.message} {error1?.message}</p>
       </div>
     );
+  }
+
+  if (user, user1) {
+    console.log(user);
+    navigate("/home");
   }
 
   return (
@@ -31,7 +36,7 @@ const SocialLogin = () => {
         <p className="mt-2 px-4">or</p>
         <div style={{ height: "1px" }} className="bg-primary w-50"></div>
       </div>
-      {setErrror}
+      {errorElement}
       <button
         onClick={() => signInWithGoogle()}
         style={{ height: "37px" }}
@@ -48,6 +53,7 @@ const SocialLogin = () => {
         <span className="px-2">Facebook Sign In</span>
       </button>
       <button
+      onClick={() => signInWithGithub()}
         style={{ height: "37px" }}
         className="d-flex align-items-center justify-content-center mx-auto btn btn-primary w-50 mb-2"
       >

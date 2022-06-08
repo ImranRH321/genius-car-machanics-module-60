@@ -11,9 +11,18 @@ const Login = () => {
   const navigate = useNavigate();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
- const location = useLocation()
- 
- const from = location.state?.from?.pathname || "/";
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  let errorElement;
+  if (error) {
+    errorElement = (
+      <div>
+        <p>Error: {error?.message}</p>
+      </div>
+    );
+  }
 
   const handleNavigateRegister = () => {
     navigate("/register");
@@ -54,6 +63,7 @@ const Login = () => {
           Submit
         </Button>
       </Form>
+      {errorElement}
       <p>
         New user Ginius car
         <Link
@@ -61,10 +71,10 @@ const Login = () => {
           className="text-danger pe-auto text-decoration-none"
           onClick={handleNavigateRegister}
         >
-          Register
+          Please Register
         </Link>
       </p>
-     
+      <SocialLogin></SocialLogin>
     </div>
   );
 };
