@@ -1,0 +1,16 @@
+.form_container{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.form_container h1{
+    text-align: center;
+    color: rgb(16, 120, 218);
+}
+form input{
+    height: 50px;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
