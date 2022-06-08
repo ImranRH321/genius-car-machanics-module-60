@@ -15,7 +15,7 @@ const Service = ({ service }) => {
       <h2>{name}</h2>
       <p>Price: {price}</p>
       <p>{description}</p>
-      <button onClick={() => handleServiceDetailsId(id)}>Name {name}</button>
+      <button className="bg-primary text-white" onClick={() => handleServiceDetailsId(id)}>Name {name}</button>
     </div>
   );
 };

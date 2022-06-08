@@ -23,15 +23,13 @@
 20. hoem ar bitor Experts, expert, doi ta componet hobe. experts data gula load hobe.
 21.rem = Font size of the root element.
 
-
-
-
-// ei 3 line work now
-    useEffect( () => {
-        fetch('services.json')
-        .then(res => res.json())
-        .then(data => setServices(data))
-    }, [])
-//
-
+/* 
+ input value_
+ *form = onSubmit
+ button type = submit 
+ 1.onChange
+ 2.onBlur
+ 3.useRef
 */
+
+
