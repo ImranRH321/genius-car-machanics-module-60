@@ -64,7 +64,7 @@ const Login = () => {
           Register
         </Link>
       </p>
-      <SocialLogin></SocialLogin>
+     
     </div>
   );
 };
