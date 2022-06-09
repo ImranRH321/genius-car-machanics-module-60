@@ -5,6 +5,9 @@ import auth from "../../../firebase.init";
 import "./Register.css";
 import { useCreateUserWithEmailAndPassword ,useUpdateProfile} from "react-firebase-hooks/auth";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../../../Shared/Loading/Loading";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [agree, setAgree] = useState(false);
@@ -21,6 +24,12 @@ const Register = () => {
   const handleNavigateLogin = () => {
     navigate("/login");
   };
+
+
+  if(loading || updating){
+    return <Loading></Loading>
+  }
+
 
   if (user) {
     console.log('user', user);
@@ -88,6 +97,7 @@ const Register = () => {
         </Link>
       </p>
       <SocialLogin></SocialLogin>
+      <ToastContainer />
     </div>
   );
 };

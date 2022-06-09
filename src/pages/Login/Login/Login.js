@@ -7,6 +7,8 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../../../Shared/Loading/Loading";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -28,6 +30,10 @@ const Login = () => {
     navigate("/register");
   };
 
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   if (user) {
     console.log(user);
     navigate(from, { replace: true });
@@ -41,11 +47,15 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
-  // forget send user
+  // forget reset send user
   const handleResetSendPassword = async () => {
     const email = emailRef.current.value;
-    await sendPasswordResetEmail(email);
-    alert("Sent email");
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Sent email");
+    } else {
+      toast("please enter your email address");
+    }
   };
 
   return (
