@@ -3,14 +3,15 @@ import { Button } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import "./Register.css";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword ,useUpdateProfile} from "react-firebase-hooks/auth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const [agree, setAgree] = useState(false);
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
   const navigate = useNavigate();
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   let errorElement;
   if (error) {
@@ -22,23 +23,20 @@ const Register = () => {
   };
 
   if (user) {
-    navigate("/");
+    console.log('user', user);
   }
-  const handleRegister = event => {
+  const handleRegister = async  event => {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
     // console.log(name, email, password);
-    //  const agree = event.target.trams.checked;
-    //  if(agree){
-    //    createUserWithEmailAndPassword(email, password);
-    //  }
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
+    console.log('Updated profile');
+    navigate('/home')
   };
-if(agree){
-  console.log(agree);
-}
+
   return (
     <div className="form_container">
       <h1>Register...</h1>
@@ -57,14 +55,23 @@ if(agree){
           id=""
           placeholder="Your password"
         />
-        <input onClick={() => setAgree(!agree)} type="checkbox" name="trams" id="trams"></input>
+        <input
+          onClick={() => setAgree(!agree)}
+          type="checkbox"
+          name="trams"
+          id="trams"
+        ></input>
 
         {/* <label className={agree?'ps-2': 'text-danger ps-2'}>Accepts Genius car Trams and condition </label> */}
-        <label className={`ps-2 ${agree? '': 'text-danger'}`}>Accepts Genius car Trams and condition </label>
+        <label className={`ps-2 ${agree ? "" : "text-danger"}`}>
+          Accepts Genius car Trams and condition{" "}
+        </label>
 
         <Button
-         disabled={!agree}
-        variant="primary d-block w-50 mx-auto mb-2" type="submit">
+          disabled={!agree}
+          variant="primary d-block w-50 mx-auto mb-2"
+          type="submit"
+        >
           Register
         </Button>
       </form>
